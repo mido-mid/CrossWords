@@ -1,0 +1,32 @@
+.header {
+  .carousel-item {
+    height: 80vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    &-1 {
+      background-image: linear-gradient(90deg,
+      rgba(67,66,233,.7) 0%,
+      rgba(199,17,79,.7) 100%),
+      url('../images/sliderImages/france.jpeg');
+    }
+    &-2 {
+      background-image: linear-gradient(90deg,
+      rgba(67,66,233,.7) 0%,
+      rgba(199,17,79,.7) 100%),
+      url('../images/sliderImages/italiy.jpeg');
+    }
+    &-3 {
+      background-image: linear-gradient(90deg,
+      rgba(67,66,233,.7) 0%,
+      rgba(199,17,79,.7) 100%),
+      url('../images/sliderImages/china.jpeg');
+    }
+    &-4 {
+      background-image: linear-gradient(90deg,
+      rgba(67,66,233,.7) 0%,
+      rgba(199,17,79,.7) 100%),
+      url('../images/sliderImages/germany.jpeg');
+    }
+  }
+}

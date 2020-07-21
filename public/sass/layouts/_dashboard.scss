@@ -1,0 +1,181 @@
+.dashboard-body {
+  height: 100vh;
+  @include respond(phone) {
+    height: auto;
+  }
+  background: linear-gradient(
+  to top right,
+  rgba(67,66,233,1) 4%, 
+  rgba(199,17,79,1) 100%);
+
+  .icon {
+    cursor: pointer;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    background: $color-main-2;
+    color: $color-white;
+    border-radius: 50%;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 500;
+  }
+
+  .section-dashboard {
+    .dashboard {
+      .title-account-container {
+        margin-top: 8rem;
+        .heading-three {
+          color: $color-white;
+        }
+
+        .account-info {
+          .img-container {
+            width: 5rem;
+            height: 5rem;
+            display: inline-block;
+            margin-right: 1rem;
+          }
+
+          .account-name {
+            color: $color-white;
+            font-weight: 700;
+            background: transparent;
+            border: none;
+
+            &:focus {
+              outline: 0px;
+            }
+          }
+
+          .dropdown-menu {
+            .dropdown-item {
+              color: $color-light-grey-1;
+              font-size: 1.2rem;
+              text-transform: capitalize;
+
+              &:hover {
+                color: $color-main-1;
+              }
+
+              &:focus {
+                background: transparent;
+                outline: 0px;
+              }
+            }
+
+            .dropdown-link {
+              &:link,
+              &:visited {
+                color: $color-light-grey-1;
+                font-size: 1.2rem;
+                text-transform: capitalize;
+              }
+
+              &:active,
+              &:hover {
+                color: $color-main-2;
+              }
+            }
+          }
+        }
+      }
+
+      .statistics-box {
+        padding: 1.5rem;
+        border-radius: 12px;
+        background: $color-white;
+
+        @include respond(tab-port) {
+          margin-bottom: 2rem;
+        }
+
+        .statistics {
+          &-name {
+            color: $color-main-3;
+          }
+          &-number {
+            font-weight: 700;
+            font-size: 2rem;
+          }
+        }
+
+        .statistics-icon-container {
+          width: 5rem;
+          height: 5rem;
+          border-radius: 50%;
+          background: $color-main-2;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $color-white;
+          font-size: 3rem;
+        }
+      }
+
+      .actions {
+        background: $color-white;
+        border-radius: 8px;
+        padding: 3rem;
+
+        .title-button-container {
+          .heading-four {
+            color: $color-main-3;
+          }
+
+          .submit-button {
+            border-radius: 4px;
+          }
+        }
+
+        .table {
+          thead {
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            color: $color-dark-grey-1;
+          }
+
+          tbody {
+            max-height: 40vh;
+            overflow: auto;
+            .table-title {
+              color: $color-main-3;
+            }
+
+            .table-link {
+              &:link,
+              &:visited {
+                color: $color-main-1;
+              }
+            }
+
+            .table-date {
+              color: $color-light-grey-1;
+            }
+          }
+
+          .drop-down-button {
+            background: transparent;
+            border: none;
+            color: $color-light-grey-1;
+
+            &:focus {
+              outline: 0px;
+            }
+          }
+
+          .dropdown-menu {
+            .dropdown-item {
+              font-size: 1.6rem;
+              text-transform: capitalize;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.navbar {
+  background-color: $color-white;
+  box-shadow: 0 8px 6px -8px black;
+  z-index: 200;
+
+  .navbar-brand {
+    color: $color-main-3;
+    font-size: 3rem;
+    font-weight: 900;
+  }
+
+  .navbar-nav {
+    @include respond(tab-port) { // width < 900?
+      padding: 3rem 2rem;
+      background: $color-white;
+      opacity: .7;
+    }
+
+    .nav-item {
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+
+      .nav-link {
+        &:link,
+        &:visited {
+          color: $color-main-3;
+          text-transform: capitalize;
+          font-size: 1.6rem;
+          font-weight: 400;
+          transition: all .4s
+        }
+
+        &:hover,
+        &:active {
+          color: $color-main-1;
+          border-bottom: 1px solid $color-main-1;
+          transform: scale(1.05);
+          @include respond(tab-port) { // width < 900?
+            transform: none;
+          }
+        }
+
+        &:focus {
+          color: $color-main-1;
+          transform: scale(1.05);
+          border-bottom: 1px solid $color-main-1;
+        }
+      }
+    }
+  }
+}

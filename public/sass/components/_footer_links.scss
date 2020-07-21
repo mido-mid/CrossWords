@@ -1,0 +1,51 @@
+.footer {
+  .heading-three {
+    color: $color-white;
+  }
+  .links-list {
+    .links-item {
+      &:not(:last-child) { 
+        margin-right: 1rem;
+      }
+      .social-link {
+        &:link,
+        &:visited {
+          text-decoration: none;
+          display: inline-block;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+          background-color: $color-main-1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $color-white;
+          transition: all .4s;
+        }
+
+        &:hover,
+        &:active {
+          color: $color-main-3;
+          background: $color-white;
+          transform: translateY(-6px)
+        }
+      }
+      .links-link {
+        &:link,
+        &:visited {
+            color: $color-light-grey-1;
+            font-size: 1.5rem;
+            display: inline-block;
+            text-decoration: none;
+            transition: all .4s;
+        }
+
+        &:hover,
+        &:active {
+          color: $color-white;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}

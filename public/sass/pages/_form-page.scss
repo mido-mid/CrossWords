@@ -1,0 +1,160 @@
+.form-nav {
+  background: transparent;
+  box-shadow: none;
+  
+
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        &:link,
+        &:visited {
+          color: $color-white;
+
+          @include respond(tab-port) { // width < 900?
+            color: $color-main-3;
+          }
+        }
+
+        &:active,
+        &:hover {
+          color: $color-main-1;
+
+          @include respond(tab-port) { // width < 900?
+            transform: none;
+          }
+        }
+
+        &:focus {
+          color: $color-main-1;
+
+          @include respond(tab-port) { // width < 900?
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-body {
+  height: 100vh;
+  background: linear-gradient(
+  to top right,
+  rgba(67,66,233,1) 4%, 
+  rgba(199,17,79,1) 100%);
+  overflow: hidden;
+
+  .copyrights {
+    background: transparent;
+  }
+}
+
+.section-form {
+  position: relative;
+  height: 95.5vh;
+
+  .heading-three {
+    color: $color-white;
+    padding-top: 12rem;
+
+    @include respond(phone) { // width < 900?
+      padding-top: 8rem;
+    }
+  }
+
+  .form-container {
+    background: $color-white;
+    width: 25%;
+    border-radius: 6px;
+    padding: 3rem;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include respond(tab-land) { // width < 900?
+      width: 70%;
+    }
+    @include respond(tab-port) { // width < 900?
+      width: 90%;
+    }
+
+    .heading-three {
+      color: $color-black;
+      padding: 3rem 0;
+    }
+
+    .text-box {
+      p {
+        color: $color-dark-grey-1;
+        font-size: 1.4rem;
+      }
+    }
+
+    .form {
+      .form-group {
+        label {
+          font-size: 1.2rem;
+          color: $color-dark-grey-1;
+        }
+        .error {
+          color: red;
+          text-transform: uppercase;
+          font-size: 1.1rem;
+          padding-left: 2.7rem;
+        }
+
+        .input-group {
+          .input-group-prepend {
+            .input-group-text {
+              border: none;
+              background: $color-white;
+              border-radius: 0;
+
+              .icon {
+                display: inline-block;
+                font-size: 1.5rem;
+                color: $color-light-grey-1;
+              }
+            }
+          }
+
+          .form-control {
+            border: none;
+            border-bottom: 1px solid $color-light-grey-1;
+            border-radius: 0;
+            padding: 1.5rem 1rem;
+          }
+        }
+      }
+
+      .button-container {
+        .submit-button {
+          width: 100%;
+          text-align: center;
+          margin-top: 3rem;
+          border-radius: 20px;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    .or {
+      padding-top: 15rem;
+    }
+
+    .form-link {
+      &:link,
+      &:visited {
+        font-size: 1.3rem;
+        color: $color-dark-grey-1;
+        text-decoration: none;
+      }
+
+      &:active,
+      &:hover {
+        color: $color-main-1;
+      }
+    }
+  }
+}
