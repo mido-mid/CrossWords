@@ -1,4 +1,4 @@
-              
+
 <?php
 
 $user = auth()->user();
@@ -8,9 +8,9 @@ $clientfiles = \App\ClientFiles::all()->count();
 $translatorscount = \App\Translator::all()->count();
 $users = \App\User::where('role',0)->count();
 
-?>       
-              
-              
+?>
+
+
               <div class="row my-5">
                 <div class="col-lg-3 col-md-6 col-sm-12">
                   <div class="statistics-box d-flex justify-content-between align-items-center">

@@ -32,7 +32,7 @@
           <a href="{{route('translator.dashboard')}}" class="nav-link">dashboard</a>
         </li>
         <li class="nav-item">
-          <a href="{{route('translator.files')}}" class="nav-link">My Files</a>
+          <a href="{{route('translator.clientfiles')}}" class="nav-link">My Files</a>
         </li>
       </ul>
     </nav>
@@ -86,7 +86,7 @@
     <!-- owl carousel -->
     <script src="{{ asset('js') }}/owl.carousel.min.js"></script>
     <script src="{{ asset('js') }}/jquery.js"></script>
-    
+
 
 </body>
 </html>

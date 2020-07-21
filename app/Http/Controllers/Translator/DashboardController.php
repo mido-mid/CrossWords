@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\ClientFiles;
 use App\Translator;
+use App\TranslatorFiles;
 use App\Language;
 
 class DashboardController extends Controller
@@ -24,7 +25,7 @@ class DashboardController extends Controller
         return view('private.translator.home');
     }
 
-    
+
     public function index()
     {
 
@@ -34,7 +35,7 @@ class DashboardController extends Controller
     }
 
     public function assign(Request $request,ClientFiles $clientfile)
-    {   
+    {
 
         $user = auth()->user();
 
@@ -45,7 +46,7 @@ class DashboardController extends Controller
     }
 
     public function cancelassign(Request $request,ClientFiles $clientfile)
-    {   
+    {
 
         $user = auth()->user();
 
@@ -55,25 +56,47 @@ class DashboardController extends Controller
         return redirect('/translator/myfiles')->withStatus('well done ,'.$clientfile->filename.' file has been cleared from your tasks');
     }
 
-    public function myfiles()
+    public function clientfiles()
     {
         $user = auth()->user();
 
-        $translatorfiles = ClientFiles::where('translator_id',$user->id)->orderBy('id', 'desc')->paginate(10);
+        $clientfiles = ClientFiles::where('translator_id',$user->id)->orderBy('id', 'desc')->paginate(10);
 
-        $languagefile = ClientFiles::where('translator_id',$user->id)->pluck('language_id');
-
-
-        $language = Language::where('id',$languagefile[0])->first();
+        $translator = Translator::where('id',$user->id)->pluck('language_id');
 
 
-        return view('private.translator.myfiles',compact('translatorfiles','language'));
+        $language = Language::where('id',$translator[0])->first();
+
+
+        return view('private.translator.myfiles',compact('clientfiles','language'));
     }
 
-    public function download(ClientFiles $clientfile)
-    {   
+    public function translatorfiles()
+    {
+        $user = auth()->user();
+
+        $translatorfiles = TranslatorFiles::where('translator_id',$user->id)->orderBy('id', 'desc')->paginate(10);
+
+        $translator = Translator::where('id',$user->id)->pluck('language_id');
+
+
+        $language = Language::where('id',$translator[0])->first();
+
+
+        return view('private.translator.translatorfiles',compact('translatorfiles','language'));
+    }
+
+    public function downloadclient(ClientFiles $clientfile)
+    {
 
         return response()->download('file_uploads/'.$clientfile->filename);
+
+    }
+
+    public function downloadtranslator(TranslatorFiles $translatorfile)
+    {
+
+        return response()->download('file_uploads/'.$translatorfile->filename);
 
     }
 }

@@ -47,7 +47,7 @@
                                     </div>
                                   @else
 
-                                  <p class="text-success">approved</p>
+                                    <p class="text-success">approved</p>
 
                                   @endif
 

@@ -96,6 +96,22 @@ class UploadController extends Controller
         $this->middleware('auth:translator');
     }
 
+
+    public function uploadGet(ClientFiles $clientFile)
+    {
+
+        return view('private.translator.upload',compact('clientFile'));
+
+    }
+
+
+    public function uploadedit(TranslatorFiles $translatorfile)
+    {
+
+        return view('private.translator.uploadedit',compact('translatorfile'));
+
+    }
+
     public function upload(Request $request,ClientFiles $clientfile)
     {
 
@@ -110,19 +126,19 @@ class UploadController extends Controller
 
 
         $rules = [
-            'filename' => 'required|file|max:10000|mimes:pdf,doc,docx,txt',
+            'text' => 'required|string',
         ];
 
 
         if($this->validate($request,$rules))
         {
-            $filename = $request->file('filename');
+            $text = $request->input('text');
 
 
             $words = $request->input('words');
 
 
-            $file_to_store = time() . "_" . $user->first_name. "_" . "." . $filename->getClientOriginalExtension();
+            $file_to_store = time() . "_" . $user->first_name. "_" . ".pdf";
 
             /*
 

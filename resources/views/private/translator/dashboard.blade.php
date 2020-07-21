@@ -1,7 +1,7 @@
 @extends('layouts.translator')
 
 @section('content')
-  
+
 @include('includes.translatorcards')
 
               <div class="row my-5">
@@ -19,44 +19,48 @@
                               </button>
                           </div>
                         @endif
-                        </div>    
+                        </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th scope="col">filename</th>
-                              <th scope="col">Target Language</th>
-                              <th scope="col">No. of words</th>
-                              <th scope="col">controls</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                          @foreach ($files as $file)
-                          <tr>
-                              <td class="table-title">{{ $file->filename }}</td>
-                              <td class="table-title"><a href="">{{ $file->language->name }}</a></td>
-                              <td class="table-title">{{ $file->words }}</td>
-                              <td class="table-title">
-                                <div class="assign-form">
+                      @if(count($files) > 0)
+                        <div class="row">
+                          <div class="col-12">
+                            <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th scope="col">filename</th>
+                                  <th scope="col">Target Language</th>
+                                  <th scope="col">No. of words</th>
+                                  <th scope="col">controls</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              @foreach ($files as $file)
+                              <tr>
+                                  <td class="table-title">{{ $file->filename }}</td>
+                                  <td class="table-title"><a href="">{{ $file->language->name }}</a></td>
+                                  <td class="table-title">{{ $file->words }}</td>
+                                  <td class="table-title">
+                                    <div class="assign-form">
 
-                                    <form action="{{route('translator.assign',$file)}}" method="POST">
+                                        <form action="{{route('translator.assign',$file)}}" method="POST">
 
-                                        @csrf
-                                        @method('put')
+                                            @csrf
+                                            @method('put')
 
-                                        <input type="submit" value="take task" class="submit-button">
-                                    </form>
-                                </div>                           
-                              </td>
-                            </tr>
-                            @endforeach
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+                                            <input type="submit" value="take task" class="submit-button">
+                                        </form>
+                                    </div>
+                                  </td>
+                                </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      @else
+                          <p class="lead text-center"> No files found</p>
+                      @endif
                     <div class="row">
                       <div class="col-12">
                         <div class="d-flex justify-content-end w-100">
