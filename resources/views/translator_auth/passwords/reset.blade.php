@@ -15,7 +15,7 @@
                 <div class="input-group-text"><i class="far fa-envelope-open icon"></i></div>
               </div>
               <input type="email" class="@error('email') is-invalid @enderror form-control form-control-lg email" id="email" placeholder="Type your email" name="email" value="{{ $email ?? old('email') }}" autocomplete="email" autofocus>
-            
+
               @error('email')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -32,7 +32,7 @@
                 <div class="input-group-text"><i class="fas fa-lock lock-icon"></i></div>
               </div>
               <input type="password" class="@error('password') is-invalid @enderror form-control form-control-lg password" id="password" placeholder="Type your password" name="password" autocomplete="current-password">
-            
+
               @error('password')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -56,7 +56,6 @@
           </div>
         </form>
       </div>
-    </section>
-  </main>
+
 @endsection
 

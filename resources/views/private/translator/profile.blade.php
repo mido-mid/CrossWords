@@ -25,7 +25,7 @@
                             <form method="post" action="{{ route('translator.profileupdate') }}" autocomplete="off">
                                 @csrf
                                 @method('put')
-                                
+
                                 @if (session('status'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         {{ session('status') }}
@@ -41,13 +41,13 @@
                                           <label for="firstNameInput" class="text-capitalize">first name</label>
                                           <div class="input-group mb-2">
                                             <input type="text" name="first_name" class="form-control form-control-lg firstName @error('first_name') is-invalid @enderror" id="firstNameInput" value="{{auth()->user()->first_name}}" placeholder="Type your username" autofocus>
-                                          
+
                                               @error('first_name')
                                                   <span class="invalid-feedback" role="alert">
                                                       <strong>{{ $message }}</strong>
                                                   </span>
                                               @enderror
-                                          
+
                                           </div>
                                         </div>
                                       </div>
@@ -56,12 +56,12 @@
                                           <label for="lastNameInput" class="text-capitalize">last name</label>
                                           <div class="input-group mb-2">
                                             <input type="text" name="last_name" class="form-control form-control-lg lastName @error('last_name') is-invalid @enderror"  value="{{auth()->user()->last_name}}" placeholder="Type your username">
-                                          
+
                                               @error('last_name')
                                                   <span class="invalid-feedback" role="alert">
                                                       <strong>{{ $message }}</strong>
                                                   </span>
-                                              @enderror                
+                                              @enderror
                                           </div>
                                         </div>
                                       </div>
@@ -103,7 +103,7 @@
                                       <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
                                           <label class="form-control-label" for="input-current-password">{{ __('Current Password') }}</label>
                                           <input type="password" name="old_password" id="input-current-password" class="form-control form-control-lg{{ $errors->has('old_password') ? ' is-invalid' : '' }}" placeholder="{{ __('Current Password') }}" value="" required>
-                                          
+
                                           @if ($errors->has('old_password'))
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $errors->first('old_password') }}</strong>
@@ -113,7 +113,7 @@
                                       <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                           <label class="form-control-label" for="input-password">{{ __('New Password') }}</label>
                                           <input type="password" name="password" id="input-password" class="form-control form-control-lg{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('New Password') }}" value="" required>
-                                          
+
                                           @if ($errors->has('password'))
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $errors->first('password') }}</strong>
@@ -175,11 +175,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+
 
 @endsection

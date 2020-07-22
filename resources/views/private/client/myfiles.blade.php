@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="gradient-header d-flex justify-content-center align-items-center">
+    <div class="gradient-header d-flex justify-content-center align-items-center">
       <div class="text-box">
         <h1 class="heading-one">my files</h1>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos, ullam.</p>

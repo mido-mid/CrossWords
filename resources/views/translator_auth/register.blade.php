@@ -18,13 +18,13 @@
                     <div class="input-group-text"><i class="far fa-user icon"></i></div>
                   </div>
                   <input type="text" name="first_name" class="form-control form-control-lg firstName @error('first_name') is-invalid @enderror" id="firstNameInput" placeholder="Type your username" autofocus>
-                
+
                     @error('first_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                
+
                 </div>
               </div>
             </div>
@@ -33,14 +33,14 @@
                 <label for="lastNameInput" class="text-capitalize">last name</label>
                 <div class="input-group mb-2">
                   <input type="text" name="last_name" class="form-control form-control-lg lastName @error('last_name') is-invalid @enderror" id="lastNameInput" placeholder="Type your username">
-                
+
                     @error('last_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror                
-                
-                
+                    @enderror
+
+
                 </div>
               </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="input-group-text"><i class="far fa-envelope-open icon"></i></div>
               </div>
               <input type="email" class="@error('email') is-invalid @enderror form-control form-control-lg email" id="email" placeholder="Type your email" name="email" value="{{ old('email') }}" autocomplete="email">
-            
+
               @error('email')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -63,7 +63,7 @@
 
 
           <div class="form-group {{ $errors->has('language_id') ? ' has-danger' : '' }}">
-            <label class="form-control-label text-capitalize" for="input-language_id">{{ __('specialization') }}</label>           
+            <label class="form-control-label text-capitalize" for="input-language_id">{{ __('specialization') }}</label>
               <select name="language_id" required class="form-control">
                 @foreach(\App\Language::all() as $language)
                   <option value="{{ $language->id }}">{{ $language->name }}</option>
@@ -83,7 +83,7 @@
                 <div class="input-group-text"><i class="fas fa-lock icon"></i></div>
               </div>
               <input type="password" class="@error('password') is-invalid @enderror form-control form-control-lg password" id="password" placeholder="Type your password" name="password" autocomplete="current-password">
-            
+
               @error('password')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -109,7 +109,5 @@
           <a href="#" class="text-uppercase form-link">sign up</a>
         </div> -->
       </div>
-    </section>
-  </main>
 
 @endsection

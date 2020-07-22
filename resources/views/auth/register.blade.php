@@ -93,7 +93,6 @@
           <a href="#" class="text-uppercase form-link">sign up</a>
         </div> -->
       </div>
-    </section>
-  </main>
+
 
 @endsection
