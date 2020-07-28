@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Translator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UploadRequest;
 use Illuminate\Http\Request;
 
 use App\ClientFiles;
@@ -97,22 +98,15 @@ class UploadController extends Controller
     }
 
 
-    public function uploadGet(ClientFiles $clientFile)
+    public function uploadGet(ClientFiles $clientfile)
     {
 
-        return view('private.translator.upload',compact('clientFile'));
+        return view('private.translator.upload',compact('clientfile'));
 
     }
 
 
-    public function uploadedit(TranslatorFiles $translatorfile)
-    {
-
-        return view('private.translator.uploadedit',compact('translatorfile'));
-
-    }
-
-    public function upload(Request $request,ClientFiles $clientfile)
+    public function upload(UploadRequest $request,ClientFiles $clientfile)
     {
 
 
@@ -125,12 +119,7 @@ class UploadController extends Controller
         $translator_id = $user->id;
 
 
-        $rules = [
-            'text' => 'required|string',
-        ];
-
-
-        if($this->validate($request,$rules))
+        if($request->validated())
         {
             $text = $request->input('text');
 
@@ -177,19 +166,121 @@ class UploadController extends Controller
 
             $clientfile->delete();
 
+            $config = [
+                'mode' => '+aCJK',
+                // "allowCJKoverflow" => true,
+                "autoScriptToLang" => true,
+                // "allow_charset_conversion" => false,
+                "autoLangToFont" => true,
+            ];
+            $mpdf=new \Mpdf\Mpdf($config);
+            $mpdf->WriteHTML($text);
+            $mpdf->Output('file_uploads/'.$file_to_store,'F');
+
 
             if($translatorfile)
             {
-                return redirect('/translator/myfiles')->withStatus('file successfully uploaded.');
+                return redirect('/translator/clientfiles')->withStatus('file successfully uploaded.');
             }
             else
             {
-                return redirect('/translator/myfiles')->withStatus('something wrong happened,try again');
+                return redirect('/translator/clientfiles')->withStatus('something wrong happened,try again');
             }
         }
 
 
 
+
+    }
+
+    public function uploadedit(TranslatorFiles $translatorfile)
+    {
+
+        return view('private.translator.uploadedit',compact('translatorfile'));
+
+    }
+
+    public function uploadupdate(UploadRequest $request,TranslatorFiles $translatorfile)
+    {
+
+        $user = auth()->user();
+
+        $user_id = $translatorfile->user_id;
+
+        $language_id = $translatorfile->language_id;
+
+        $translator_id = $user->id;
+
+
+
+        if($request->validated())
+        {
+            $text = $request->input('text');
+
+
+            $words = $request->input('words');
+
+
+            $file_to_store = time() . "_" . $user->first_name. "_" . ".pdf";
+
+            /*
+
+            $filename->move('file_uploads', $file_to_store);
+
+
+                if($filename->getClientOriginalExtension() == 'pdf')
+                {
+
+                    $parser = new \Smalot\PdfParser\Parser();
+                    $pdf = $parser->parseFile('file_uploads/'.$file_to_store);
+
+                    $text = $pdf->getText();
+
+
+                }
+                elseif($filename->getClientOriginalExtension() == 'doc'|| $filename->getClientOriginalExtension() == 'docx')
+                {
+                    $docObj = new Doc2Txt('file_uploads/'.$file_to_store);
+
+                    $text = $docObj->convertToText();
+
+                }
+
+                else
+                {
+                    $text = file_get_contents('file_uploads/'.$file_to_store);
+                }
+
+
+				$words = str_word_count($text);*/
+
+
+            $newtranslatorfile = TranslatorFiles::create(['filename' => $file_to_store , 'user_id' => $user_id , 'language_id' => $language_id , 'translator_id' => $translator_id ,'words' => $words]);
+
+
+            $translatorfile->delete();
+
+            $config = [
+                'mode' => '+aCJK',
+                // "allowCJKoverflow" => true,
+                "autoScriptToLang" => true,
+                // "allow_charset_conversion" => false,
+                "autoLangToFont" => true,
+            ];
+            $mpdf=new \Mpdf\Mpdf($config);
+            $mpdf->WriteHTML($text);
+            $mpdf->Output('file_uploads/'.$file_to_store,'F');
+
+
+            if($newtranslatorfile)
+            {
+                return redirect('/translator/translatorfiles')->withStatus('file successfully uploaded.');
+            }
+            else
+            {
+                return redirect('/translator/translatorfiles')->withStatus('something wrong happened,try again');
+            }
+        }
 
     }
 }

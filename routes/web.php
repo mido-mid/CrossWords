@@ -60,12 +60,13 @@ Route::group(['middleware' => ['auth:translator','approved'] ], function () {
 	Route::put('translator/dashboard/{clientfile}', 'Translator\DashboardController@assign')->name('translator.assign');
 	Route::put('translator/myfiles/{clientfile}', 'Translator\DashboardController@cancelassign')->name('translator.cancelassign');
 	Route::get('translator/clientfiles/download/{clientfile}', 'Translator\DashboardController@downloadclient')->name('translator.downloadclient');
-    Route::get('translator/translatorfiles/download/{transaltorfile}', 'Translator\DashboardController@downloadclient')->name('translator.downloadtranslator');
+    Route::get('translator/translatorfiles/download/{transaltorfile}', 'Translator\DashboardController@downloadtranslator')->name('translator.downloadtranslator');
 	Route::get('translator/clientfiles', 'Translator\DashboardController@clientfiles')->name('translator.clientfiles');
     Route::get('translator/translatorfiles', 'Translator\DashboardController@translatorfiles')->name('translator.translatorfiles');
     Route::get('translator/upload/{clientfile}', 'Translator\UploadController@uploadget')->name('translator.uploadget');
 	Route::post('translator/upload/{clientfile}', 'Translator\UploadController@upload')->name('translator.uploadpost');
-    Route::put('translator/upload/{translatorfile}', 'Translator\UploadController@upload')->name('translator.uploadedit');
+    Route::get('translator/edit/{translatorfile}', 'Translator\UploadController@uploadedit')->name('translator.uploadedit');
+    Route::post('translator/edit/{translatorfile}', 'Translator\UploadController@uploadupdate')->name('translator.uploadupdate');
 });
 
 

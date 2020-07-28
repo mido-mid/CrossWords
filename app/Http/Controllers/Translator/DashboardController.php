@@ -30,7 +30,7 @@ class DashboardController extends Controller
     {
 
         $user = auth()->user();
-        $files = ClientFiles::where('translator_id',null)->where('language_id',$user->language_id)->orderBy('id', 'desc')->paginate(10);
+        $files = ClientFiles::where('translator_id',null)->where('language_id',$user->language_id)->orWhere('source_language',$user->language->name)->orderBy('id', 'desc')->paginate(10);
         return view('private.translator.dashboard',compact('files'));
     }
 
@@ -53,7 +53,7 @@ class DashboardController extends Controller
         $clientfile->update(['translator_id' => null]);
 
 
-        return redirect('/translator/myfiles')->withStatus('well done ,'.$clientfile->filename.' file has been cleared from your tasks');
+        return redirect('/translator/clientfiles')->withStatus('well done ,'.$clientfile->filename.' file has been cleared from your tasks');
     }
 
     public function clientfiles()
@@ -95,7 +95,6 @@ class DashboardController extends Controller
 
     public function downloadtranslator(TranslatorFiles $translatorfile)
     {
-
         return response()->download('file_uploads/'.$translatorfile->filename);
 
     }

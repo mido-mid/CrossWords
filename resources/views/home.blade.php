@@ -110,7 +110,7 @@ $languages  = \App\Language::all();
     <!-- slider end -->
   </header>
   <main>
-    <section class="section-services-languages">
+    <section id="languages" class="section-services-languages">
       <div class="container">
         <div class="row u-margin-bottom-huge">
           <div class="col-12">
@@ -141,7 +141,7 @@ $languages  = \App\Language::all();
       </div>
     </section>
 
-    <section class="section-about-us">
+    <section id="about" class="section-about-us">
       <div class="container">
         <div class="row u-margin-bottom-huge">
           <div class="col-lg-6 d-flex align-items-center">
@@ -203,16 +203,16 @@ $languages  = \App\Language::all();
           <h4 class="heading-three mb-5">links</h4>
           <ul class="list-unstyled links-list">
             <li class="links-item">
-              <a href="#" class="links-link">Home</a>
+              <a href="#languages" class="links-link">languages</a>
             </li>
             <li class="links-item">
-              <a href="#" class="links-link">about</a>
+              <a href="#about" class="links-link">about</a>
             </li>
             <li class="links-item">
-              <a href="#" class="links-link">Articles</a>
+              <a href="{{route('login')}}" class="links-link">login</a>
             </li>
             <li class="links-item">
-              <a href="#" class="links-link">Contact</a>
+              <a href="{{route('register')}}" class="links-link">register</a>
             </li>
           </ul>
         </div>

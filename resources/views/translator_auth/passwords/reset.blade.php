@@ -8,6 +8,9 @@
         <form method="POST" action="{{ route('translator.password.update') }}" class="form login-form">
 
           @csrf
+
+            <input type="hidden" name="token" value="{{ $token }}">
+
           <div class="form-group">
             <label for="emailInput" class="text-capitalize">email</label>
             <div class="input-group mb-2">
@@ -52,7 +55,7 @@
           </div>
 
           <div class="button-container">
-            <button type="submit" class="submit-button">login</button>
+            <button type="submit" class="submit-button">{{ __('Reset Password') }}</button>
           </div>
         </form>
       </div>

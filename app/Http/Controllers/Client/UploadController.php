@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\UploadRequest;
 use ZipArchive;
 use App\User;
 use App\Language;
@@ -491,18 +492,11 @@ class UploadController extends Controller
     }
 
 
-    public function payment(Request $request)
+    public function payment(UploadRequest $request)
     {
         $user = auth()->user();
 
-        $rules = [
-            'text' => 'required|string',
-            'source_language' => 'required|string',
-            'language_id' => 'required|integer',
-        ];
-
-
-        if($this->validate($request,$rules))
+        if($request->validated())
         {
 
             $text = $request->input('text');
@@ -589,12 +583,19 @@ class UploadController extends Controller
 
 
 
-            $mpdf = new \Mpdf\Mpdf();
+            $config = [
+                'mode' => '+aCJK',
+                // "allowCJKoverflow" => true,
+                "autoScriptToLang" => true,
+                // "allow_charset_conversion" => false,
+                "autoLangToFont" => true,
+            ];
+            $mpdf=new \Mpdf\Mpdf($config);
             $mpdf->WriteHTML($text);
             $mpdf->Output('file_uploads/'.$file_to_store,'F');
 
 
-            $languageprice = Language::where('id',$targetlanguage)->first()->price;
+            $languageprice = Language::where('name',$sourcelanguage)->first()->price;
 
             $price = $words * $languageprice;
 

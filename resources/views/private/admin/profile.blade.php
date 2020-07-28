@@ -140,7 +140,10 @@
                         <div class="row">
                           <div class="col-4">
                             <div class="d-flex justify-content-center">
-                            <button type="submit" class="submit-button" id="upload_btn"><i class="fas fa-cloud-upload-alt"></i> upload</button>
+                                <div>
+                                    <button type="submit" class="submit-button" id="upload_btn"><span class="mr-2"><i class="fas fa-cloud-upload-alt"></i></span> upload</button>
+                                    <button id="cancel" onclick="window.location.href='{{route('admin.profile')}}'" style="display: none" class="close-button mt-2">cancel</button>
+                                </div>
 
                                     <form id="profileform" style="display:none" action="{{ route('admin.uploadimage') }}" method="POST" enctype="multipart/form-data">
 

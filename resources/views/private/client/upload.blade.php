@@ -18,6 +18,15 @@
             <div class="form-container">
               <h2 class="heading-two">upload your file</h2>
 
+                @if($errors->any())
+
+
+                    @foreach($errors->all() as $error)
+
+                        <p class="text-danger">{{$error}}</p>
+                    @endforeach
+                @endif
+
               @if (session('status'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         {{ session('status') }}
@@ -30,21 +39,29 @@
 
                 @csrf
 
-                  <input type="hidden" name="words" value="25">
+                  <div class="d-flex justify-content-center u-margin-top-huge">
+                      <input type="hidden" value="" class="valueWordsHiddenInput">
+                  </div>
+                  <div class="d-flex justify-content-center u-margin-top-huge">
+                      <input type="hidden" value="" class="valueCharsHiddenInput">
+                  </div>
 
-                <div class="form-group u-margin-bottom-huge">
-                  <label for="formControlFile1">File</label>
-                    <textarea name="text" placeholder=" " class="input" required></textarea>
-                  <small class="form-text text-muted mt-2">
-                    ( You are allowed to upload only files with .doc, .docx, .text, .pdf )
-                  </small>
 
-                  @if ($errors->has('text'))
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $errors->first('text') }}</strong>
-                    </span>
-                  @endif
-                </div>
+                  <div class="form-group u-margin-bottom-huge">
+                        <textarea class="form-control" name="text" id="textToTranslate" rows="20"></textarea>
+                      <div class="d-flex justify-content-end">
+                          <div>
+                              <small class="form-text text-muted mt-3">Words count: <span class="wordsCount">0</span></small>
+                              <small class="form-text text-muted mt-3">Characters count: <span class="charsCount">0</span></small>
+                          </div>
+                      </div>
+
+                      @error('text')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                  </div>
                 <div class="form-row u-margin-top-big">
                   <div class="form-group{{ $errors->has('source_language') ? ' has-danger' : '' }} col-6">
                                     <label class="form-control-label" for="fromLanguage">{{ __('From') }}</label>

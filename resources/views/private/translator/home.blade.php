@@ -86,7 +86,7 @@ $languages  = \App\Language::all();
     <!-- slider end -->
   </header>
 <main>
-    <section class="section-services-languages">
+    <section id="languages" class="section-services-languages">
       <div class="container">
         <div class="row u-margin-bottom-huge">
           <div class="col-12">
@@ -117,7 +117,7 @@ $languages  = \App\Language::all();
       </div>
     </section>
 
-    <section class="section-about-us">
+    <section id="about" class="section-about-us">
       <div class="container">
         <div class="row u-margin-bottom-huge">
           <div class="col-lg-6 d-flex align-items-center">
@@ -179,18 +179,18 @@ $languages  = \App\Language::all();
         <div class="col-lg-2 col-md-12">
           <h4 class="heading-three mb-5">links</h4>
           <ul class="list-unstyled links-list">
-            <li class="links-item">
-              <a href="#" class="links-link">Home</a>
-            </li>
-            <li class="links-item">
-              <a href="#" class="links-link">about</a>
-            </li>
-            <li class="links-item">
-              <a href="#" class="links-link">Translator</a>
-            </li>
-            <li class="links-item">
-              <a href="#" class="links-link">Contact</a>
-            </li>
+              <li class="links-item">
+                  <a href="#languages" class="links-link">languages</a>
+              </li>
+              <li class="links-item">
+                  <a href="#about" class="links-link">about</a>
+              </li>
+              <li class="links-item">
+                  <a href="{{route('translator.loginget')}}" class="links-link">login</a>
+              </li>
+              <li class="links-item">
+                  <a href="{{route('translator.registerget')}}" class="links-link">register</a>
+              </li>
           </ul>
         </div>
         <div class="col-lg-5 col-md-12">

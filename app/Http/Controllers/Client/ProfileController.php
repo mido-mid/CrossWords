@@ -31,6 +31,7 @@ class ProfileController extends Controller
 
         $photoable_id = $user->id;
 
+
         if($image = $request->file('image'))
         {
             $rules = [
@@ -38,7 +39,7 @@ class ProfileController extends Controller
             ];
 
             $this->validate($request,$rules);
-            
+
             $file_to_store = time() . "_" . $user->first_name . "_" . "." . $image->getClientOriginalExtension();
 
                 if($user->photo)
@@ -64,7 +65,7 @@ class ProfileController extends Controller
         }
         else
         {
-            return redirect('/admin/profile');
+            return redirect('/profile');
         }
     }
 
