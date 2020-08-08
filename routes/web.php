@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // public routes
 Route::get('/',function(){
 
-	return view('welcome');
+	return view('home');
 })->name('welcome');
 
 
@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth:translator','approved'] ], function () {
 	Route::put('translator/dashboard/{clientfile}', 'Translator\DashboardController@assign')->name('translator.assign');
 	Route::put('translator/myfiles/{clientfile}', 'Translator\DashboardController@cancelassign')->name('translator.cancelassign');
 	Route::get('translator/clientfiles/download/{clientfile}', 'Translator\DashboardController@downloadclient')->name('translator.downloadclient');
-    Route::get('translator/translatorfiles/download/{transaltorfile}', 'Translator\DashboardController@downloadtranslator')->name('translator.downloadtranslator');
+    Route::get('translator/translatorfiles/download/{id}', 'Translator\DashboardController@downloadtranslator')->name('translator.downloadtranslator');
 	Route::get('translator/clientfiles', 'Translator\DashboardController@clientfiles')->name('translator.clientfiles');
     Route::get('translator/translatorfiles', 'Translator\DashboardController@translatorfiles')->name('translator.translatorfiles');
     Route::get('translator/upload/{clientfile}', 'Translator\UploadController@uploadget')->name('translator.uploadget');
@@ -103,6 +103,6 @@ Route::group(['middleware' => ['auth','verified'] ], function () {
 	Route::post('uploadfile', 'Client\UploadController@payment')->name('paymentpost');
 	Route::get('/paymentstatus', 'Client\UploadController@status')->name('paymentstatus');
 	Route::get('/paymentcancel/{filetostore}', 'Client\UploadController@cancel')->name('paymentcancel');
-	Route::get('myfiles/download/{clientfile}', 'Client\ClientController@download')->name('client.download');
+	Route::get('myfiles/download/{id}', 'Client\ClientController@download')->name('client.download');
 
 });

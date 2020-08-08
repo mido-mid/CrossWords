@@ -29,8 +29,10 @@ class DashboardController extends Controller
     public function index()
     {
 
-        $user = auth()->user();
-        $files = ClientFiles::where('translator_id',null)->where('language_id',$user->language_id)->orWhere('source_language',$user->language->name)->orderBy('id', 'desc')->paginate(10);
+        $files = ClientFiles::where('translator_id',null)->where(function ($q) {
+            $user = auth()->user();
+            $q->where('target_language', $user->language_id)->orWhere('source_language', $user->language_id);
+        })->orderBy('id', 'desc')->paginate(10);
         return view('private.translator.dashboard',compact('files'));
     }
 
@@ -89,13 +91,13 @@ class DashboardController extends Controller
     public function downloadclient(ClientFiles $clientfile)
     {
 
-        return response()->download('file_uploads/'.$clientfile->filename);
+        return response()->download('client_file_uploads/'.$clientfile->filename);
 
     }
 
-    public function downloadtranslator(TranslatorFiles $translatorfile)
+    public function downloadtranslator($id)
     {
-        return response()->download('file_uploads/'.$translatorfile->filename);
-
+        $translatorfile = TranslatorFiles::where('id',$id)->first();
+        return response()->download('translator_file_uploads/'.$translatorfile->filename);
     }
 }

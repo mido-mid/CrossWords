@@ -63,18 +63,23 @@
 
 
           <div class="form-group {{ $errors->has('language_id') ? ' has-danger' : '' }}">
-            <label class="form-control-label text-capitalize" for="input-language_id">{{ __('specialization') }}</label>
-              <select name="language_id" required class="form-control">
-                @foreach(\App\Language::all() as $language)
-                  <option value="{{ $language->id }}">{{ $language->name }}</option>
-                @endforeach
-              </select>
+            <label class="text-capitalize" for="input-language_id">{{ __('specialization') }}</label>
+              <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-globe-europe"></i></div>
+                  </div>
+                  <select name="language_id" required class="custom-select custom-select-lg custom-select-from">
+                    @foreach(\App\Language::all() as $language)
+                      <option value="{{ $language->id }}">{{ $language->name }}</option>
+                    @endforeach
+                  </select>
 
-              @if($errors->has('language_id'))
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('language_id') }}</strong>
-                </span>
-              @endif
+                  @if($errors->has('language_id'))
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('language_id') }}</strong>
+                    </span>
+                  @endif
+              </div>
           </div>
           <div class="form-group">
             <label for="passwordInput" class="text-capitalize">password</label>

@@ -45,8 +45,8 @@
                                 <tr>
                                   <td class="table-title"><a href="{{route('languages.show',$language)}}">{{ $language->name }}</a></td>
                                   <td class="table-title">{{ $language->price }} $</td>
-                                  <td class="table-title">{{ count($language->clientfiles) }}</td>
-                                  <td class="table-title" >{{ count($language->translatorfiles) }}</td>
+                                  <td class="table-title">{{ count($language->clientfilessource) }}</td>
+                                  <td class="table-title" >{{ count($language->translatorfilessource) }}</td>
                                   <td class="table-title">{{ count($language->translators) }}</td>
                                   <td>
                                     <div class="dropdown">

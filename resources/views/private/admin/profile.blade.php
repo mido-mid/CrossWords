@@ -72,11 +72,11 @@
                                           <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
                                           <input type="email" name="email" id="input-email" class="form-control form-control-lg{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
 
-                                          @if ($errors->has('email'))
-                                              <span class="invalid-feedback" role="alert">
-                                                  <strong>{{ $errors->first('email') }}</strong>
-                                              </span>
-                                          @endif
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <div class="text-center">

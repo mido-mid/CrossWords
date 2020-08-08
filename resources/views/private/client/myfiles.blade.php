@@ -29,7 +29,7 @@
                   @foreach($translatorfiles as $file)
                     <tr>
                       <td class="table-title">{{ $file->filename }}</td>
-                      <td class="table-title">{{ $file->language->name }}</td>
+                      <td class="table-title">{{ $file->languagetarget->name }}</td>
                       <td class="table-title">
 
                         <button type="submit" class="submit-button" onclick="window.location.href='{{route('client.download',$file)}}'"><i class="fas fa-download"></i> download</button>

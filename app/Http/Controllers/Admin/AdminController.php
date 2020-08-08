@@ -21,7 +21,7 @@ class AdminController extends Controller
     }
 
     public function index()
-    {   
+    {
 
         $translators = Translator::orderBy('id', 'desc')->paginate(10);
 
@@ -29,16 +29,16 @@ class AdminController extends Controller
     }
 
     public function approve(Request $request , Translator $translator)
-    {   
+    {
         $translator->update(['approved' => $request->approve]);
-       
-        return redirect('/admin')->withStatus('well done ,'.$translator->first_name.' '.$translator->last_name.' has been approved by you');
+
+        return redirect('/admin');
     }
 
 
     public function showtranslator(Translator $translator)
     {
-        return view('private.admin.showtranslator', compact('translator'));   
+        return view('private.admin.showtranslator', compact('translator'));
     }
 
 

@@ -40,51 +40,48 @@ $languages  = \App\Language::all();
 
             <div class="collapse navbar-collapse">
               <ul class="navbar-nav ml-auto">
-              @guest
-                <li class="nav-item active">
-                  <a class="nav-link" href="{{route('home')}}">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{route('login')}}">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">articles</a>
-                </li>
-              @endguest
+                  @guest
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{route('login')}}">Login</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{route('register')}}">Register</a>
+                      </li>
+                  @endguest
                 @auth
-                @if(auth()->user()->role == 1)
-                <li class="nav-item">
-                  <a class="nav-link" href="{{route('admin.dashboard')}}">My dashboard</a>
-                </li>
-                <li class="nav-item">
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                  </form>
-                  <a href="{{ route('translatorlogout') }}" class="nav-link" onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                </li>
-                @endif
-                  @if(auth()->user()->role == 0)
-                  <li class="nav-item active">
-                    <a class="nav-link" href="{{route('home')}}">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{route('myfiles')}}">My Files</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{route('profile')}}">My Profile</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{route('paymentget')}}">Start Translation</a>
-                  </li>
-                  <li class="nav-item">
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                    </form>
-                    <a href="{{ route('translatorlogout') }}" class="nav-link" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                  </li>
-                  @endif
+                    @if(auth()->user()->role == 1)
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{route('admin.dashboard')}}">My dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                          </form>
+                          <a href="{{ route('translatorlogout') }}" class="nav-link" onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                        </li>
+                    @endif
+                      @if(auth()->user()->role == 0)
+                          <li class="nav-item active">
+                            <a class="nav-link" href="{{route('home')}}">Home</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{{route('myfiles')}}">My Files</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{{route('profile')}}">My Profile</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{{route('paymentget')}}">Start Translation</a>
+                          </li>
+                          <li class="nav-item">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                            </form>
+                            <a href="{{ route('translatorlogout') }}" class="nav-link" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                          </li>
+                      @endif
                 @endauth
               </ul>
             </div>
@@ -115,6 +112,14 @@ $languages  = \App\Language::all();
         <div class="row u-margin-bottom-huge">
           <div class="col-12">
             <div class="text-box text-center">
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
               <h5 class="heading-four pb-2">our services <span class="colord-span-1">&&</span></h5>
               <h2 class="heading-two">languages</h2>
             </div>

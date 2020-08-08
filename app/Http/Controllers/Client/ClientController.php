@@ -20,16 +20,15 @@ class ClientController extends Controller
     {
         $user = auth()->user();
 
-        $clientfiles = ClientFiles::where('user_id',$user->id)->orderBy('id', 'desc')->paginate(10);
         $translatorfiles = TranslatorFiles::where('user_id',$user->id)->orderBy('id', 'desc')->paginate(10);
 
-        return view('private.client.myfiles',compact('clientfiles','translatorfiles'));
+        return view('private.client.myfiles',compact('translatorfiles'));
     }
 
-    public function download(TranslatorFiles $clientfile)
-    {   
-
-        return response()->download('file_uploads/'.$clientfile->filename);
+    public function download($id)
+    {
+        $translatorfile = TranslatorFiles::where('id',$id)->first();
+        return response()->download('translator_file_uploads/'.$translatorfile->filename);
 
     }
 }

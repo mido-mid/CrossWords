@@ -7,13 +7,21 @@
             <div class="actions">
                 <h4 class="heading-four">Translated text upload Edit</h4>
                 <div class="form-group col-4">
-                    <label class="form-control-label" for="fromLanguage">{{ __('From') }}</label>
+                    <label class="form-control-label" for="fromLanguage">{{ __('Translation language') }}</label>
 
-                    <select name="source_language" class="custom-select custom-select-lg custom-select-from" id="fromLanguage" required>
-                        <option label="{{ $translatorfile->language->name }}" value="{{ $translatorfile->language->name }}">{{ $translatorfile->language->name }}</option>
+                    <select name="language_id" class="custom-select custom-select-lg custom-select-from" id="toLanguage" required>
+                        @foreach(\App\Language::all() as $language)
+                            <option label="{{ $language->name }}" value="{{ $language->name }}">{{ $language->name }}</option>
+                        @endforeach
                     </select>
 
                 </div>
+
+                @if($errors->any())
+                    @foreach($errors->all() as $error)
+                        <p class="text-danger">{{$error}}</p>
+                    @endforeach
+                @endif
 
                 <form method="post" action="{{ route('translator.uploadupdate',$translatorfile) }}" autocomplete="off">
 
@@ -21,7 +29,7 @@
                     @csrf
 
                     <div class="d-flex justify-content-center u-margin-top-huge">
-                        <input type="hidden" name="words" value="" class="valueWordsHiddenInput">
+                        <input type="hidden" value="" class="valueWordsHiddenInput">
                     </div>
                     <div class="d-flex justify-content-center u-margin-top-huge">
                         <input type="hidden" value="" class="valueCharsHiddenInput">

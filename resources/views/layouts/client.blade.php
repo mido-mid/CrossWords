@@ -9,7 +9,7 @@
 
     <title>CrossWords</title>
 
-    <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('fontawesome') }}/fontawesome-free/css/all.min.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -32,7 +32,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon navbar-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
-          
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
               @guest
@@ -91,7 +91,7 @@
 
     @include('includes.footer')
 
- 
+
     <script src="{{ asset('js') }}/jquery-3.5.1.min.js"></script>
     <script src="{{ asset('js') }}/bootstrap.min.js"></script>
     <!-- owl carousel -->

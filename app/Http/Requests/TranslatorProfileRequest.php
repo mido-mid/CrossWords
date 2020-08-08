@@ -28,7 +28,7 @@ class TranslatorProfileRequest extends FormRequest
         return [
             'first_name' => ['required', 'string','max:40'],
             'last_name' => ['required', 'string', 'max:40'],
-            'email' => ['required', 'email', Rule::unique((new Translator)->getTable())->ignore(auth()->id())],
+            'email' => ['required', 'email', Rule::unique((new Translator)->getTable())->ignore(auth()->id()), 'regex:/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'],
         ];
     }
 }

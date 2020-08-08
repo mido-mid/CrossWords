@@ -19,6 +19,6 @@ class approved
         if($user->approved == 1){
             return $next($request);
         }
-        return abort(404);
+        return redirect('/translator/home')->withStatus('you must be approved by the admin to access this page');
     }
 }

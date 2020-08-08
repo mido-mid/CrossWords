@@ -57,8 +57,8 @@ class RegisterController extends Controller
             'first_name' => ['required', 'string','max:40'],
             'last_name' => ['required', 'string', 'max:40'],
             'language_id' => ['required', 'integer'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:translators'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:translators','regex:/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'],
+            'password' => ['required', 'string', 'min:8', 'confirmed','regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/'],
         ]);
     }
 

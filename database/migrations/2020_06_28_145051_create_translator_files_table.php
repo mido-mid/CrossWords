@@ -18,12 +18,12 @@ class CreateTranslatorFilesTable extends Migration
             $table->string('filename');
             $table->biginteger('user_id')->unsigned();
             $table->biginteger('translator_id')->unsigned();
-            $table->biginteger('language_id')->unsigned();
+            $table->foreignId('source_language')->constrained('languages');
+            $table->foreignId('target_language')->constrained('languages');
             $table->integer('words')->default(45);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('translator_id')->references('id')->on('translators');
-            $table->foreign('language_id')->references('id')->on('languages');
         });
     }
 

@@ -62,11 +62,10 @@ $factory->define(ClientFiles::class, function (Faker $faker) {
         'filename' => $faker->randomElement(['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg',]),
         'user_id' => User::all()->random()->id,
         'translator_id' => Translator::all()->random()->id,
-        'language_id' => Language::all()->random()->id,
-        'source_language' => Language::all()->random()->name,
+        'target_language' => Language::all()->random()->id,
+        'source_language' => Language::all()->random()->id,
         'words' => $faker->randomElement([15,20,25,30,35,40]),
         'total_price' => $faker->randomElement([100,200,300,400]),
-        'file_assignment' => $faker->randomElement(['assigned','not assigned']),
     ];
 });
 
@@ -76,7 +75,8 @@ $factory->define(TranslatorFiles::class, function (Faker $faker) {
         'filename' => $faker->randomElement(['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg',]),
         'user_id' => User::all()->random()->id,
         'translator_id' => Translator::all()->random()->id,
-        'language_id' => Language::all()->random()->id,
+        'target_language' => Language::all()->random()->id,
+        'source_language' => Language::all()->random()->id,
         'words' => $faker->randomElement([15,20,25,30,35,40]),
     ];
 });

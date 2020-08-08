@@ -91,6 +91,14 @@ $languages  = \App\Language::all();
         <div class="row u-margin-bottom-huge">
           <div class="col-12">
             <div class="text-box text-center">
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
               <h5 class="heading-four pb-2">our services <span class="colord-span-1">&&</span></h5>
               <h2 class="heading-two">languages</h2>
             </div>

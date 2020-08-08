@@ -18,7 +18,7 @@ This is a website which provide translation services in different languages
 ## Usage:
 - Clone the repository with __git clone__
 - Run __composer install__
-- create __crosswords__ database on phpmyadmin
-- import database.sql file in your __crosswords__ database
-- rename DB_DATABASE in .env file to the __crosswords__ you created in phpmyadmin ex:DB_DATABASE=crosswords and if you have username and password for your database write them in DB_USERNAME and DB_PASSWORD but if you don't have username and password write DB_USERNAME=root and don't write password
-- login as an owner mohamedosama12w32@gmail.com and password @Owner1234 
+- create your database on phpmyadmin
+- Rename DB_DATABASE in .env file with your database name
+- Run __php artisan migrate:fresh --seed__
+- then the website will be ready to run it.

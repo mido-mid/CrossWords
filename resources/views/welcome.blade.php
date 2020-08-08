@@ -42,12 +42,63 @@ $languages  = \App\Language::all();
 
             <div class="collapse navbar-collapse">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{route('login')}}">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{route('register')}}">Register</a>
-                </li>
+                  @guest
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('login')}}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('register')}}">Register</a>
+                    </li>
+                  @endguest
+                      @auth
+                          {{auth()->user()->specialization}}
+                          @if(auth()->user()->role != null)
+                              @if(auth()->user()->role == 1)
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{route('admin.dashboard')}}">My dashboard</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                          @csrf
+                                      </form>
+                                      <a href="{{ route('translatorlogout') }}" class="nav-link" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                  </li>
+                              @endif
+                              @if(auth()->user()->role == 0)
+                                  <li class="nav-item active">
+                                      <a class="nav-link" href="{{route('home')}}">Home</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{route('myfiles')}}">My Files</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{route('profile')}}">My Profile</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{route('paymentget')}}">Start Translation</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                          @csrf
+                                      </form>
+                                      <a href="{{ route('translatorlogout') }}" class="nav-link" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                  </li>
+                              @endif
+                          @else
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{{route('translator.dashboard')}}">My dashboard</a>
+                              </li>
+                              <li class="nav-item">
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                      @csrf
+                                  </form>
+                                  <a href="{{ route('translatorlogout') }}" class="nav-link" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                              </li>
+                          @endif
+                      @endauth
               </ul>
             </div>
       </div>

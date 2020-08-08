@@ -32,7 +32,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>                       
+                    </div>
               <div class="row my-5">
                 <div class="col-12">
                   <div style="margin-top:-40px" class="actions w-100">
@@ -40,7 +40,7 @@
                       <div class="col-12">
                         <div class="title-button-container d-flex justify-content-between align-items-center py-5 w-100">
                           <h4 class="heading-four">Language Files</h4>
-                        </div>    
+                        </div>
                       </div>
                     </div>
                     <div class="row">
@@ -50,6 +50,7 @@
                             <tr>
                               <th scope="col">Translator</th>
                               <th scope="col">Source Language</th>
+                                <th scope="col">Target Language</th>
                               <th scope="col">Price</th>
                               <th scope="col">no. of words</th>
                             </tr>
@@ -58,11 +59,12 @@
                           @foreach ($clientfiles as $clientfile)
                             <tr>
                               @if($clientfile->translator)
-                              <td class="table-title"><a href="{{route('admin.showtranslator',$clientfile->translator)}}">{{ $clientfile->translator->first_name }}</a></td>
+                                <td class="table-title"><a href="{{route('admin.showtranslator',$clientfile->translator)}}">{{ $clientfile->translator->first_name }}</a></td>
                               @else
-                              <td class="table-title">No translator assigned</td>
+                                <td class="table-title">No translator assigned</td>
                               @endif
-                              <td class="table-title">{{ $clientfile->source_language }}</td>
+                              <td class="table-title">{{ $clientfile->languagesource->name }}</td>
+                                  <td class="table-title">{{ $clientfile->languagetarget->name }}</td>
                               <td class="table-title">{{ $clientfile->total_price }} $</td>
                               <td class="table-title">{{ $clientfile->words }}</td>
                             </tr>
@@ -92,6 +94,5 @@
 
 
 
-                        
+
 @endsection
-                        

@@ -11,7 +11,7 @@ class TranslatorFiles extends Model
     public $timestamps = false;
 
     protected $fillable = [
-    	'filename','translator_id','user_id','language_id','words'
+    	'filename','translator_id','user_id','source_language','target_language','words'
     ];
 
     public function user() {
@@ -22,7 +22,11 @@ class TranslatorFiles extends Model
         return $this->belongsTo('App\Translator');
     }
 
-    public function language() {
-        return $this->belongsTo('App\Language');
+    public function languagetarget() {
+        return $this->belongsTo('App\Language','target_language');
+    }
+
+    public function languagesource() {
+        return $this->belongsTo('App\Language','source_language');
     }
 }

@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <h4 class="heading-four">Files Being Translated</h4>
+                <h4 class="heading-four">Translated Files</h4>
                 @if(count($translatorfiles) > 0)
                     <div class="row mt-5">
                         <div class="col-12">
@@ -49,7 +49,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">filename</th>
-                                    <th scope="col">Target Language</th>
+                                    <th scope="col">File Language</th>
                                     <th scope="col">No. of words</th>
                                     <th scope="col">controls</th>
                                 </tr>
@@ -64,12 +64,6 @@
                                             <button type="submit" class="submit-button" class="submit-button" onclick="window.location.href='{{route('translator.downloadtranslator',$file)}}'"><i class="fas fa-download"></i> download</button>
                                             <button type="submit" class="submit-button" onclick="window.location.href='{{route('translator.uploadedit',$file)}}'" id="translator_upload_btn"><i class="fas fa-cloud-upload-alt"></i> edit</button>
 
-                                        <!--<form id="translatorform" style="display:none" action="{{ route('translator.uploadpost',$file) }}" method="POST" enctype="multipart/form-data">
-
-                                            @csrf
-                                            <input type="file" id="translator_file" name="filename">
-
-                                        </form>-->
                                         </td>
                                     </tr>
                                 </tbody>

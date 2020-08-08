@@ -50,6 +50,7 @@ class LanguageController extends Controller
         $rules = [
             'name' => 'required|min:5|max:100',
             'price' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
 
         $this->validate($request,$rules);
@@ -59,12 +60,6 @@ class LanguageController extends Controller
         if($language)
         {
             if($file = $request->file('image')) {
-
-                $rules = [
-                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                ];
-    
-                $this->validate($request,$rules);
 
                 $filename = $file->getClientOriginalName();
                 $fileextension = $file->getClientOriginalExtension();
@@ -80,14 +75,18 @@ class LanguageController extends Controller
             }
             return redirect('/admin/languages')->withStatus('language successfully created.');
         }
+        else
+        {
+            return redirect('/admin/languages')->withStatus('something wrong happened , try again');
+        }
     }
 
     public function show(Language $language)
     {
 
-        $clientfiles = ClientFiles::where('language_id',$language->id)->orderBy('id', 'desc')->paginate(10);
+        $clientfiles = ClientFiles::where('source_language',$language->id)->orderBy('id', 'desc')->paginate(10);
 
-        $translatorfiles = TranslatorFiles::where('language_id',$language->id)->get();
+        $translatorfiles = TranslatorFiles::where('source_language',$language->id)->get();
 
         $languagewords = 0;
 
@@ -95,8 +94,8 @@ class LanguageController extends Controller
         {
             $languagewords += $translatorfile->words;
         }
-        
-        return view('private.admin.languages.showlanguage', compact('language','clientfiles','translatorfiles','languagewords'));   
+
+        return view('private.admin.languages.showlanguage', compact('language','clientfiles','translatorfiles','languagewords'));
     }
 
 
@@ -132,7 +131,7 @@ class LanguageController extends Controller
         $this->validate($request, $rules);
 
         $language->update($request->all());
-  
+
         if($file = $request->file('image')) {
 
             $rules = [
@@ -167,7 +166,7 @@ class LanguageController extends Controller
         }
         return redirect('/admin/languages')->withStatus('language successfully updated.');
 
-        
+
     }
 
     /**

@@ -8,22 +8,30 @@ class Language extends Model
 {
     //
     public $timestamps = false;
-	
+
     protected $fillable = [
     	'name','price'
     ];
 
-    
+
     public function photo() {
         return $this->morphOne('App\Photo', 'photoable');
     }
-    
-    public function translatorfiles(){
-        return $this->hasMany('App\TranslatorFiles');
+
+    public function translatorfilestarget(){
+        return $this->hasMany('App\TranslatorFiles','target_language');
     }
 
-    public function clientfiles() {
-        return $this->hasMany('App\ClientFiles');
+    public function translatorfilessource(){
+        return $this->hasMany('App\TranslatorFiles','source_language');
+    }
+
+    public function clientfilessource(){
+        return $this->hasMany('App\TranslatorFiles','source_language');
+    }
+
+    public function clientfilestarget() {
+        return $this->hasMany('App\ClientFiles','target_language');
     }
 
     public function translators() {

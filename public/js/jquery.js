@@ -109,27 +109,6 @@ $(function () {
         }
     })
 
-    /*
-
-  $('.custom-select-from').change(function () {
-    if ($(this).val() === 'arabic') {
-      $('.custom-select-to option').each(function () {
-        $(this).removeAttr('disabled selected')
-      })
-      $('.custom-select-to option[label="arabic"]').attr('disabled', 'disabled')
-    } else {
-      $('.custom-select-to option').each(function () {
-        $(this).attr('disabled', 'disabled')
-      })
-      $('.custom-select-to option[label="arabic"]').removeAttr('disabled selected')
-      $('.custom-select-to option[label="arabic"]').attr('selected', 'selected')
-    }
-  })
-
-  $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-  })*/
-
 
     var navIsOpen = true
 
@@ -225,46 +204,9 @@ $(function () {
         $("#translator_upload_btn").attr('class', 'save-button')
     });
 
-/*
-    var textToTranslateLength = 0
-    $('#textToTranslate').keyup(function () {
-        textToTranslateLength = $(this)
-            .val()
-            .replace(/[^\w\s]/gi, '')
-            .split(/\s+/)
-            .filter(v => v !== '' && v !== '\n')
-            .length
-
-        $('.wordsCount').text(textToTranslateLength)
-        $('.valueHiddenInput').val(textToTranslateLength)
-    })*/
-
-
-    // $('.navbar-nav .nav-link').on('click', function () {
-    //   $('.navbar-nav .nav-link').each(function () {
-    //     $(this).removeClass('current')
-    //   })
-    //   $(this).addClass('current')
-    // })
-
-    // $(document).mouseup(function(e) {
-    //   if (navIsOpen === true && !$('.side-navigation').is(e.target) && $('.side-navigation').has(e.target).length === 0) {
-    //     closeProcess()
-    //   }
-    // })
-
-
-    // Delet Form
-    // $('delete-form').on('submit', function (e) {
-    //   $.ajax({
-
-    //   })
-    // })
-
-
 
     $('.custom-select-from').change(function () {
-        if ($(this).val() === 'arabic') {
+        if ($('.custom-select-from option:selected').attr('label') === 'arabic' ) {
             $('.custom-select-to option').each(function () {
                 $(this).removeAttr('disabled selected')
             })
@@ -279,7 +221,7 @@ $(function () {
             $('textarea#textToTranslate').css('direction', 'ltr')
         }
 
-        if ($(this).val() === 'chinese') {
+        if ($('.custom-select-from option:selected').attr('label') === 'chinese') {
             $('.wordsCount').parent().hide()
             $('.valueCharsHiddenInput').attr('name', 'words')
             $('.valueWordsHiddenInput').attr('name', 'chars')
@@ -291,7 +233,7 @@ $(function () {
     $('#textToTranslate').keyup(function () {
         let charsCount = $(this)
             .val()
-            .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '')
+            .replace(/[`~!@#$%^&*()_|+\-=?;:؟ـ‘'",.،؛<>«»\{\}\[\]\\\/]/gi, '')
             .split(/\s+/)
             .filter(v => v != '' && v != '\n')
             .join('')
@@ -299,7 +241,7 @@ $(function () {
 
         let wordsCount = $(this)
             .val()
-            .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '')
+            .replace(/[`~!@#$%^&*()_|+\-=?;:؟ـ‘'",.،؛<>«»\{\}\[\]\\\/]/gi, '')
             .split(/\s+/)
             .filter(v => v != '' && v != '\n')
             .length

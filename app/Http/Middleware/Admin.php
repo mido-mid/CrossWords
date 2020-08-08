@@ -19,7 +19,7 @@ class Admin
         if($user->role == 1){
             return $next($request);
         }
-        return abort(404);
+        return back()->withStatus(__('you cannot access this page.'));
     }
 
 }
