@@ -32,7 +32,7 @@
                           </div>
                           <div class="form-group">
                             <label for="descriptionInput" class="text-capitalize">Price/Word</label>
-                            <input type="number" class="@error('price') is-invalid @enderror form-control form-control-lg" placeholder="price" name="price" autocomplete="name" required>
+                            <input type="number" min="0" step="0.01" class="@error('price') is-invalid @enderror form-control form-control-lg" placeholder="price" name="price" autocomplete="name" required>
 
                                     @if ($errors->has('price'))
                                         <span class="invalid-feedback" role="alert">

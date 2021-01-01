@@ -97,12 +97,12 @@ Route::group(['middleware' => ['auth','verified'] ], function () {
 	Route::put('profile', 'Client\ProfileController@update')->name('profile.update');
 	Route::put('profile/password', 'Client\ProfileController@password')->name('profile.password');
 	Route::post('profile', 'Client\ProfileController@upload')->name('client.uploadimage');
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('home', 'HomeController@index')->name('home');
 	Route::get('myfiles', 'Client\ClientController@myfiles')->name('myfiles');
 	Route::get('uploadfile', 'Client\UploadController@index')->name('paymentget');
 	Route::post('uploadfile', 'Client\UploadController@payment')->name('paymentpost');
-	Route::get('/paymentstatus', 'Client\UploadController@status')->name('paymentstatus');
-	Route::get('/paymentcancel/{filetostore}', 'Client\UploadController@cancel')->name('paymentcancel');
+	Route::get('paymentstatus', 'Client\UploadController@status')->name('paymentstatus');
+	Route::get('paymentcancel/{filetostore}', 'Client\UploadController@cancel')->name('paymentcancel');
 	Route::get('myfiles/download/{id}', 'Client\ClientController@download')->name('client.download');
 
 });

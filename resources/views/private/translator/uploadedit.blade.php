@@ -29,7 +29,7 @@
                     @csrf
 
                     <div class="d-flex justify-content-center u-margin-top-huge">
-                        <input type="hidden" value="" class="valueWordsHiddenInput">
+                        <input type="hidden" value="" name="words" class="valueWordsHiddenInput">
                     </div>
                     <div class="d-flex justify-content-center u-margin-top-huge">
                         <input type="hidden" value="" class="valueCharsHiddenInput">

@@ -48,8 +48,8 @@ class LanguageController extends Controller
     {
         //
         $rules = [
-            'name' => 'required|min:5|max:100',
-            'price' => 'required|integer',
+            'name' => ['required','min:2','max:100','not_regex:/([%\$#\*<>]+)/'],
+            'price' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
 
@@ -124,8 +124,8 @@ class LanguageController extends Controller
         //
 
         $rules = [
-            'name' => 'required|min:5|max:100',
-            'price' => 'required|integer',
+            'name' => ['required','min:2','max:100','not_regex:/([%\$#\*<>]+)/'],
+            'price' => 'required|numeric',
         ];
 
         $this->validate($request, $rules);

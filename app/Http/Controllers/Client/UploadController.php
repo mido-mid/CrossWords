@@ -68,6 +68,7 @@ class UploadController extends Controller
             $targetlanguage = $request->input('target_language');
             $words = $request->input('words');
 
+
             $file_to_store = time() . "_" . $user->first_name. "_" . ".pdf";
 
             $config = [
@@ -82,10 +83,9 @@ class UploadController extends Controller
             $mpdf->Output('client_file_uploads/'.$file_to_store,'F');
 
 
-            $languageprice = Language::where('name',$sourcelanguage)->first()->price;
+            $languageprice = Language::where('id',$sourcelanguage)->first()->price;
 
             $price = $words * $languageprice;
-
 
              $request->session()->put([
 
@@ -101,41 +101,42 @@ class UploadController extends Controller
 
             $payer = new Payer();
 
-                $payer->setPaymentMethod("paypal");
-
-                $file = new Item();
-
-                $file->setName($file_to_store)->setCurrency('USD')->setQuantity(1)->setPrice($price);
+            $payer->setPaymentMethod("paypal");
 
 
-                $itemlist = new ItemList();
+            $file = new Item();
 
-                $itemlist->setItems([$file]);
-
-
-                $amount = new Amount();
-
-                $amount->setCurrency('USD')->setTotal($price);
+            $file->setName($file_to_store)->setCurrency('USD')->setQuantity(1)->setPrice($price);
 
 
-                $transaction = new Transaction();
+            $itemlist = new ItemList();
 
-                $transaction->setAmount($amount)->setItemList($itemlist)->setDescription('payment description');
-
-
-                $redirecturls = new RedirectUrls();
-
-                $redirecturls->setReturnUrl('http://localhost/crosswords/public/paymentstatus')->setCancelUrl('http://localhost/crosswords/public/paymentcancel/'.$file_to_store);
+            $itemlist->setItems([$file]);
 
 
-                $payment = new Payment();
-                $payment->setIntent("sale")
-                    ->setPayer($payer)
-                    ->setRedirectUrls($redirecturls)
-                    ->setTransactions(array($transaction));
+            $amount = new Amount();
+
+            $amount->setCurrency('USD')->setTotal($price);
 
 
-                $request = clone $payment;
+            $transaction = new Transaction();
+
+            $transaction->setAmount($amount)->setItemList($itemlist)->setDescription('payment description');
+
+
+            $redirecturls = new RedirectUrls();
+
+            $redirecturls->setReturnUrl('http://localhost/crosswords/public/paymentstatus')->setCancelUrl('http://localhost/crosswords/public/paymentcancel/'.$file_to_store);
+
+
+            $payment = new Payment();
+            $payment->setIntent("sale")
+                ->setPayer($payer)
+                ->setRedirectUrls($redirecturls)
+                ->setTransactions(array($transaction));
+
+
+            $request = clone $payment;
 
 
             try {
@@ -171,13 +172,16 @@ class UploadController extends Controller
         $payment = Payment::get($paymentId,$this->apiContext);
         $execution = new PaymentExecution();
         $execution->setPayerId($request->input('PayerID'));
+
+        $data = $request->session()->all();
+        ClientFiles::create(['filename' => $data['filename'] , 'user_id' => $data['user_id'] , 'target_language' => $data['target_language'] , 'source_language' => $data['source_language'] ,'words' => $data['words'] , 'total_price' => $data['total_price'] ]);
+        return redirect('uploadfile')->withStatus('thank you payment completed');
         $result = $payment->execute($execution,$this->apiContext);
 
         $data = $request->session()->all();
 
         if($result->getState() == 'approved')
         {
-
             ClientFiles::create(['filename' => $data['filename'] , 'user_id' => $data['user_id'] , 'target_language' => $data['target_language'] , 'source_language' => $data['source_language'] ,'words' => $data['words'] , 'total_price' => $data['total_price'] ]);
             return redirect('uploadfile')->withStatus('thank you payment completed');
         }

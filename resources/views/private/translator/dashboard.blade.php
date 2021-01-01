@@ -38,7 +38,7 @@
                               @foreach ($files as $file)
                               <tr>
                                   <td class="table-title">{{ $file->filename }}</td>
-                                  <td class="table-title"><a href="">{{ $file->language->name }}</a></td>
+                                  <td class="table-title"><a href="">{{ $file->languagetarget->name }}</a></td>
                                   <td class="table-title">{{ $file->words }}</td>
                                   <td class="table-title">
                                     <div class="assign-form">

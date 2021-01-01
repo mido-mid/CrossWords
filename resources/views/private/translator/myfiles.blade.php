@@ -37,18 +37,19 @@
                       @if(count($clientfiles) > 0)
                         <div class="row mt-5">
                           <div class="col-12">
-                          @if (session('status'))
-                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            {{ session('status') }}
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                    @endif
+                            @if (session('status'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('status') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                             <table class="table table-hover">
                               <thead>
                                 <tr>
                                   <th scope="col">filename</th>
+                                    <th scope="col">source Language</th>
                                   <th scope="col">Target Language</th>
                                   <th scope="col">No. of words</th>
                                   <th scope="col">controls</th>
@@ -57,8 +58,9 @@
                               <tbody>
                               @foreach($clientfiles as $file)
                                 <tr>
-                                  <td class="table-title">{{ $file->filename }}</td>
-                                  <td class="table-title">{{ $file->language->name }}</td>
+                                    <td class="table-title">{{ $file->filename }}</td>
+                                    <td class="table-title">{{ $file->languagesource->name }}</td>
+                                  <td class="table-title">{{ $file->languagetarget->name }}</td>
                                   <td class="table-title">{{ $file->words }}</td>
                                   <td class="table-title">
                                         <button type="submit" class="submit-button" id="cancel_button"><i class="fas fa-trash"></i> cancel task</button>

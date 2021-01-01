@@ -38,7 +38,7 @@ class UploadController extends Controller
 
         $source_language = $clientfile->source_language;
 
-        $language_id = $clientfile->language_id;
+        $target_language = $clientfile->target_language;
 
         $translator_id = $user->id;
 
@@ -57,7 +57,8 @@ class UploadController extends Controller
             $translatorfile = TranslatorFiles::create([
                 'filename' => $file_to_store ,
                 'user_id' => $user_id ,
-                'language_id' => $language_id ,
+                'source_language' => $source_language ,
+                'target_language' => $target_language ,
                 'translator_id' => $translator_id ,
                 'words' => $words
             ]);
@@ -104,7 +105,9 @@ class UploadController extends Controller
 
         $user_id = $translatorfile->user_id;
 
-        $language_id = $translatorfile->language_id;
+        $source_language = $translatorfile->source_language;
+
+        $target_language = $translatorfile->target_language;
 
         $translator_id = $user->id;
 
@@ -121,7 +124,7 @@ class UploadController extends Controller
             $file_to_store = time() . "_" . $user->first_name. "_" . ".pdf";
 
 
-            $newtranslatorfile = TranslatorFiles::create(['filename' => $file_to_store , 'user_id' => $user_id , 'language_id' => $language_id , 'translator_id' => $translator_id ,'words' => $words]);
+            $newtranslatorfile = TranslatorFiles::create(['filename' => $file_to_store , 'user_id' => $user_id , 'source_language' => $source_language,'target_language' => $target_language, 'translator_id' => $translator_id ,'words' => $words]);
 
 
             $translatorfile->delete();
