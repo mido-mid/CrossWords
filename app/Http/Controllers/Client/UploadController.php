@@ -141,7 +141,7 @@ class UploadController extends Controller
 
             try {
                 $payment->create($this->apiContext);
-            } catch (\PayPal\Exception\PPConnectionException $ex) {
+            } catch (\PayPal\Exception\PayPalConnectionException $ex) {
 
                 die($ex);
             }
@@ -174,17 +174,16 @@ class UploadController extends Controller
         $execution->setPayerId($request->input('PayerID'));
 
         $data = $request->session()->all();
-        ClientFiles::create(['filename' => $data['filename'] , 'user_id' => $data['user_id'] , 'target_language' => $data['target_language'] , 'source_language' => $data['source_language'] ,'words' => $data['words'] , 'total_price' => $data['total_price'] ]);
-        return redirect('uploadfile')->withStatus('thank you payment completed');
-        $result = $payment->execute($execution,$this->apiContext);
 
-        $data = $request->session()->all();
+        $result = $payment->execute($execution,$this->apiContext);
 
         if($result->getState() == 'approved')
         {
             ClientFiles::create(['filename' => $data['filename'] , 'user_id' => $data['user_id'] , 'target_language' => $data['target_language'] , 'source_language' => $data['source_language'] ,'words' => $data['words'] , 'total_price' => $data['total_price'] ]);
+
             return redirect('uploadfile')->withStatus('thank you payment completed');
         }
+
 
         unlink('client_file_uploads/'.$data['filename']);
 
